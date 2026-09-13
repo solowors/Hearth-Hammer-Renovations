@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearth & Hammer Renovations — Home renovation, done right</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#EEE7D9;
+    --stone-deep:#E2D8C4;
+    --paper:#FBF8F2;
+    --ink:#2B2A25;
+    --ink-soft:#5B564B;
+    --forest:#3F5D4C;
+    --forest-deep:#2E4739;
+    --brick:#B4593A;
+    --wood:#8B6A4A;
+    --line:rgba(43,42,37,0.14);
+    --radius:6px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--stone);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--forest);color:var(--paper);}
+  :focus-visible{outline:2px solid var(--forest);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(238,231,217,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:1.25rem;}
+  .brand-mark{width:34px;height:34px;flex:none;}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:0.95rem;color:var(--ink-soft);transition:color .15s;}
+  .nav-links a:hover{color:var(--forest-deep);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:12px 24px;border-radius:var(--radius);
+    font-size:0.95rem;font-weight:600;cursor:pointer;border:1px solid transparent;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--forest);color:var(--paper);}
+  .btn-primary:hover{background:var(--forest-deep);}
+  .btn-line{border-color:var(--ink);color:var(--ink);}
+  .btn-line:hover{background:var(--ink);color:var(--paper);}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:76px 0 90px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;}
+  .kicker{color:var(--forest-deep);font-weight:600;font-size:0.95rem;margin-bottom:18px;display:block;}
+  .hero h1{font-size:3.4rem;line-height:1.05;}
+  .hero-sub{margin-top:22px;font-size:1.15rem;color:var(--ink-soft);max-width:44ch;}
+  .hero-cta{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+  .hero-trust{margin-top:44px;display:flex;gap:36px;flex-wrap:wrap;}
+  .hero-trust div{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:600;color:var(--forest-deep);}
+  .hero-trust span{display:block;font-family:'Inter',sans-serif;font-size:0.82rem;color:var(--ink-soft);font-weight:500;margin-top:2px;}
+
+  .hero-collage{position:relative;height:460px;}
+  .hero-collage img{position:absolute;object-fit:cover;border-radius:var(--radius);box-shadow:0 20px 40px -18px rgba(43,42,37,0.4);}
+  .hc-1{width:66%;height:320px;top:0;right:0;}
+  .hc-2{width:48%;height:230px;left:0;bottom:0;border:6px solid var(--paper);}
+
+  /* ---------- Section basics ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:2.3rem;line-height:1.15;}
+  .section-head p{margin-top:16px;color:var(--ink-soft);font-size:1.05rem;}
+
+  /* ---------- Services ---------- */
+  .services{background:var(--paper);}
+  .service-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+    padding:52px 0;border-top:1px solid var(--line);
+  }
+  .service-row:last-child{border-bottom:1px solid var(--line);}
+  .service-row.reverse .s-img{order:2;}
+  .service-row.reverse .s-text{order:1;}
+  .s-img img{border-radius:var(--radius);height:280px;width:100%;object-fit:cover;}
+  .s-text h3{font-size:1.6rem;margin-bottom:14px;}
+  .s-text p{color:var(--ink-soft);}
+  .s-list{margin-top:18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .s-list li{color:var(--ink-soft);font-size:0.95rem;padding-left:20px;position:relative;}
+  .s-list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--brick);border-radius:50%;}
+
+  /* ---------- Process ---------- */
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+  .process-step{position:relative;padding:0 26px 0 0;}
+  .process-step + .process-step{border-left:1px solid var(--line);padding-left:26px;}
+  .step-num{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--brick);font-weight:600;}
+  .process-step h3{margin-top:14px;font-size:1.2rem;}
+  .process-step p{margin-top:10px;color:var(--ink-soft);font-size:0.95rem;}
+
+  /* ---------- Gallery ---------- */
+  .gallery{background:var(--paper);}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .gallery-item{position:relative;border-radius:var(--radius);overflow:hidden;height:260px;}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .gallery-item:hover img{transform:scale(1.05);}
+  .gallery-cap{
+    position:absolute;left:0;right:0;bottom:0;
+    background:linear-gradient(to top, rgba(20,18,14,0.78), transparent);
+    color:#fff;padding:16px;font-size:0.9rem;font-weight:600;
+  }
+
+  /* ---------- Pricing ---------- */
+  .price-note{max-width:640px;color:var(--ink-soft);margin-top:16px;}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .price-card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--paper);padding:36px 30px;display:flex;flex-direction:column;
+  }
+  .price-card.featured{border-color:var(--forest);background:var(--forest);color:var(--paper);}
+  .price-card.featured .ink-soft-alt{color:rgba(251,248,242,0.78);}
+  .price-card.featured .s-list-alt li::before{background:var(--stone);}
+  .price-tag{margin-top:8px;font-family:'Fraunces',serif;font-size:2.1rem;}
+  .price-tag span{font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:500;opacity:0.7;}
+  .price-list{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:11px;flex:1;}
+  .price-list li{font-size:0.93rem;padding-left:22px;position:relative;}
+  .price-list li::before{content:"✓";position:absolute;left:0;top:0;font-weight:700;color:var(--brick);}
+  .price-card.featured .price-list li::before{color:var(--stone);}
+  .price-card .btn{margin-top:28px;}
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{background:var(--forest-deep);color:var(--paper);}
+  .testimonials .section-head h2{color:var(--paper);}
+  .testimonials .section-head p{color:rgba(251,248,242,0.75);}
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .test-card{border:1px solid rgba(251,248,242,0.18);border-radius:var(--radius);padding:28px;}
+  .test-card p.quote{font-size:1.02rem;line-height:1.6;}
+  .test-name{margin-top:22px;font-weight:600;font-size:0.92rem;}
+  .test-loc{color:rgba(251,248,242,0.6);font-size:0.85rem;margin-top:2px;}
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    background:var(--brick);color:var(--paper);border-radius:var(--radius);
+    padding:56px 60px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;
+  }
+  .cta-banner h2{color:var(--paper);font-size:2rem;max-width:20ch;}
+  .cta-banner .btn-primary{background:var(--paper);color:var(--ink);}
+  .cta-banner .btn-primary:hover{background:var(--stone);}
+
+  /* ---------- Footer ---------- */
+  footer{padding:64px 0 36px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--line);}
+  .foot-brand p{margin-top:14px;color:var(--ink-soft);font-size:0.92rem;max-width:32ch;}
+  .foot-col h4{font-size:0.9rem;margin-bottom:16px;}
+  .foot-col a, .foot-col p{display:block;color:var(--ink-soft);font-size:0.92rem;margin-bottom:10px;}
+  .foot-col a:hover{color:var(--forest-deep);}
+  .foot-bottom{display:flex;justify-content:space-between;padding-top:24px;color:var(--ink-soft);font-size:0.85rem;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:920px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-collage{height:340px;margin-top:20px;}
+    .hero h1{font-size:2.5rem;}
+    .service-row{grid-template-columns:1fr;gap:26px;}
+    .service-row.reverse .s-img,.service-row.reverse .s-text{order:initial;}
+    .process-grid{grid-template-columns:1fr 1fr;gap:30px;row-gap:36px;}
+    .process-step + .process-step{border-left:none;padding-left:0;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .price-grid,.test-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;row-gap:32px;}
+    .cta-banner{padding:40px 28px;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    .hero h1{font-size:2.1rem;}
+    .gallery-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4L36 16V36H24V24H16V36H4V16L20 4Z" fill="#3F5D4C"/>
+        <path d="M20 4L36 16H30L20 8.5L10 16H4L20 4Z" fill="#B4593A"/>
+      </svg>
+      Hearth & Hammer
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">Our process</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn btn-primary">Get a free quote</a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Licensed & insured · Serving the greater metro area</span>
+      <h1>Renovations that make your house feel like home again.</h1>
+      <p class="hero-sub">From a single refreshed room to a full rebuild, we plan, build, and clean up after ourselves — so you get a home you love without the stress of a construction site.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Book a free consultation</a>
+        <a href="#pricing" class="btn btn-line">See pricing</a>
+      </div>
+      <div class="hero-trust">
+        <div>19 yrs<span>In business</span></div>
+        <div>640+<span>Homes renovated</span></div>
+        <div>4.9/5<span>Average client rating</span></div>
+      </div>
+    </div>
+    <div class="hero-collage">
+      <img class="hc-1" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop" alt="Bright renovated kitchen with wood cabinetry and island">
+      <img class="hc-2" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop" alt="Cozy renovated living room with natural light">
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Every room, handled by one crew you already trust</h2>
+      <p>No subcontractor shuffle. The same team that quotes your project is the one that builds it, start to finish.</p>
+    </div>
+
+    <div class="service-row">
+      <div class="s-img"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=900&auto=format&fit=crop" alt="Renovated kitchen with island and pendant lighting"></div>
+      <div class="s-text">
+        <h3>Kitchens</h3>
+        <p>The heart of the house, rebuilt around how your family actually cooks and gathers.</p>
+        <ul class="s-list">
+          <li>Custom cabinetry and layout redesign</li>
+          <li>Countertops, backsplash, and lighting</li>
+          <li>Appliance upgrades and plumbing moves</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-row reverse">
+      <div class="s-img"><img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=900&auto=format&fit=crop" alt="Modern renovated bathroom with soaking tub"></div>
+      <div class="s-text">
+        <h3>Bathrooms</h3>
+        <p>Small footprint, big impact — we make every square foot feel calm and spa-like.</p>
+        <ul class="s-list">
+          <li>Walk-in showers and tub replacements</li>
+          <li>Tile, vanity, and storage redesign</li>
+          <li>Ventilation and water-damage repair</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="s-img"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=900&auto=format&fit=crop" alt="Finished basement living space"></div>
+      <div class="s-text">
+        <h3>Basements & additions</h3>
+        <p>Turn unused square footage into a guest suite, home office, or family room.</p>
+        <ul class="s-list">
+          <li>Framing, insulation, and egress windows</li>
+          <li>Home offices, gyms, and rental suites</li>
+          <li>Full permitting and inspection handled for you</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-row reverse">
+      <div class="s-img"><img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=900&auto=format&fit=crop" alt="Renovated home exterior with new siding and porch"></div>
+      <div class="s-text">
+        <h3>Exteriors & curb appeal</h3>
+        <p>Siding, porches, and decks that protect your home and welcome you back to it every day.</p>
+        <ul class="s-list">
+          <li>Siding, roofing, and window replacement</li>
+          <li>Decks, porches, and outdoor living spaces</li>
+          <li>Energy-efficiency and insulation upgrades</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How a project moves from idea to move-in day</h2>
+      <p>Four steps, one point of contact the whole way through.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <span class="step-num">01</span>
+        <h3>Free home visit</h3>
+        <p>We walk the space with you, talk through your goals and budget, and take measurements.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-num">02</span>
+        <h3>Design & fixed quote</h3>
+        <p>You get a 3D layout and a firm, itemized price — no surprise change orders later.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-num">03</span>
+        <h3>Build & daily updates</h3>
+        <p>Our crew protects your floors and furniture, and you get photo updates every day.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-num">04</span>
+        <h3>Walkthrough & warranty</h3>
+        <p>We finish with a full clean and a two-year workmanship warranty on everything we build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Recent work from around the neighborhood</h2>
+      <p>A few of the homes we've had the chance to rebuild this year.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?q=80&w=800&auto=format&fit=crop" alt="Renovated open-plan kitchen and dining room">
+        <div class="gallery-cap">Maple Street — full kitchen rebuild</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Renovated bathroom with tile shower">
+        <div class="gallery-cap">Oakview Rd — primary bathroom</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop" alt="Bright renovated living room">
+        <div class="gallery-cap">Birchwood Ct — living room refresh</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=800&auto=format&fit=crop" alt="Finished home office in converted basement">
+        <div class="gallery-cap">Sundale Ave — basement office</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=800&auto=format&fit=crop" alt="Renovated home exterior with deck">
+        <div class="gallery-cap">Willow Lane — deck & siding</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=800&auto=format&fit=crop" alt="Renovated bright bedroom">
+        <div class="gallery-cap">Crestview Dr — primary bedroom</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Straightforward pricing, no hidden add-ons</h2>
+      <p class="price-note">Every quote is itemized and fixed before we start. These starting prices cover labor, standard materials, and cleanup for an average-sized room — your free visit gets you an exact number.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Refresh</h3>
+        <p class="ink-soft" style="color:var(--ink-soft);margin-top:6px;">Cosmetic updates that change how a room feels, fast.</p>
+        <div class="price-tag">$4,200<span> starting</span></div>
+        <ul class="price-list">
+          <li>Paint, fixtures, and hardware</li>
+          <li>Flooring refresh in one room</li>
+          <li>New lighting and trim</li>
+          <li>Completed in 1–2 weeks</li>
+        </ul>
+        <a href="#contact" class="btn btn-line">Get this quote</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Renovate</h3>
+        <p class="ink-soft-alt" style="margin-top:6px;">Our most popular package — a full kitchen or bathroom rebuild.</p>
+        <div class="price-tag">$18,500<span> starting</span></div>
+        <ul class="price-list s-list-alt">
+          <li>Layout redesign & new cabinetry</li>
+          <li>Plumbing and electrical updates</li>
+          <li>Countertops, tile, and lighting</li>
+          <li>Dedicated project manager</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="background:var(--paper);color:var(--forest-deep);">Get this quote</a>
+      </div>
+      <div class="price-card">
+        <h3>Reimagine</h3>
+        <p style="color:var(--ink-soft);margin-top:6px;">Additions, basements, and whole-home renovations.</p>
+        <div class="price-tag">$48,000<span> starting</span></div>
+        <ul class="price-list">
+          <li>Structural work & permitting</li>
+          <li>Multi-room or full-home scope</li>
+          <li>3D design walkthrough included</li>
+          <li>Flexible payment milestones</li>
+        </ul>
+        <a href="#contact" class="btn btn-line">Get this quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What homeowners say when the crew leaves</h2>
+      <p>Real feedback from recent projects.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="quote">They finished four days early and the price on move-in day matched the quote to the dollar. Our kitchen finally fits how we actually live.</p>
+        <div class="test-name">Amelia R.</div>
+        <div class="test-loc">Kitchen renovation, Maple Street</div>
+      </div>
+      <div class="test-card">
+        <p class="quote">I was nervous about a crew being in the house with two kids around. They were tidy, on time every single day, and genuinely kind to my family.</p>
+        <div class="test-name">David & Priya K.</div>
+        <div class="test-loc">Bathroom & basement, Oakview Rd</div>
+      </div>
+      <div class="test-card">
+        <p class="quote">We got three quotes. Theirs wasn't the cheapest, but it was the only one with nothing hidden in the fine print. Worth every cent.</p>
+        <div class="test-name">Marcus T.</div>
+        <div class="test-loc">Home addition, Willow Lane</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-banner">
+      <h2>Let's walk through your home and talk numbers — free, no obligation.</h2>
+      <a href="tel:+15551234567" class="btn btn-primary">Call (555) 123-4567</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L36 16V36H24V24H16V36H4V16L20 4Z" fill="#3F5D4C"/>
+            <path d="M20 4L36 16H30L20 8.5L10 16H4L20 4Z" fill="#B4593A"/>
+          </svg>
+          Hearth & Hammer
+        </div>
+        <p>Family-owned home renovation company, building comfortable, affordable homes since 2007.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="#services">Kitchens</a>
+        <a href="#services">Bathrooms</a>
+        <a href="#services">Basements & additions</a>
+        <a href="#services">Exteriors</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#process">Our process</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Free quote</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <p>(555) 123-4567</p>
+        <p>hello@hearthandhammer.com</p>
+        <p>Mon–Sat, 8am–6pm</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Hearth & Hammer Renovations. Licensed & insured.</span>
+      <span>Design that respects the home you already have.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
